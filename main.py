@@ -1,5 +1,6 @@
 import pandas as pd
-import openpyxl as pyxl
+from openpyxl import load_workbook
+from openpyxl.worksheet.table import Table, TableStyleInfo
 import os
 import sys
 
@@ -8,15 +9,11 @@ def main():
 
     excel_file = 'sample_shot_sheet.xlsx'
     folder_path = ''
+    table_name = 'Table2'
 
-    df = pyxl.load_workbook(excel_file)
-    df1 = df.active
-
-    for row in range(0, df1.max_row):
-        for col in df1.iter_cols(1, df1.max_column):
-            print(col[row].value)
-
-
+    wb = load_workbook(filename=excel_file)
+    ws = wb.active
+    tb = ws.tables['Table2']
     return
 
 
